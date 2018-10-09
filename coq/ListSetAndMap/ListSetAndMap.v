@@ -12,11 +12,6 @@ Proof.
 Defined.
 
 
-Notation "'instantiate1' lemma func0" :=
-  (ltac:(let r := eval unfold lemma in (lemma func0) in exact r))
-  (at level 10, only parsing, lemma at next level, func0 at next level).
-
-
 (** List Sets *)
 
 (* this would normally be kept abstract as a section variable,
