@@ -84,12 +84,12 @@ Proof.
 Defined.
 
 
-QuickChick union_spec_c0.
-QuickChick union_spec_w0.
-QuickChick intersect_spec_c0.
-QuickChick intersect_spec_w0.
-QuickChick diff_spec_c0.
-QuickChick diff_spec_w0.
+(*! QuickChick union_spec_c0. *)
+(*! QuickChick union_spec_w0. *)
+(*! QuickChick intersect_spec_c0. *)
+(*! QuickChick intersect_spec_w0. *)
+(*! QuickChick diff_spec_c0. *)
+(*! QuickChick diff_spec_w0. *)
 
 
 (** List Maps *)
@@ -203,25 +203,25 @@ Conjecture get_update_map_r: forall m1 m2 k v,
     get (update_map m1 m2) k = Some v.
 
 
-QuickChick empty_is_empty.
-QuickChick get_remove_same.
-QuickChick get_remove_diff.
-QuickChick get_put_same.
-QuickChick get_put_diff.
-QuickChick get_restrict_in.
-QuickChick get_restrict_notin.
-QuickChick in_domain.
-QuickChick not_in_domain.
-QuickChick in_range. (* reveals copy paste bug *)
-(* QuickChick not_in_range. TODO *)
-QuickChick reverse_get_Some. (* doesn't hold as such *)
-(* QuickChick reverse_get_None. TODO *)
-QuickChick intersect_map_spec. (* reveals bug related to duplicate keys *)
-QuickChick remove_by_value_same. (* reveals bug related to duplicate keys *)
-QuickChick remove_by_value_diff.
-QuickChick remove_values_never_there.
-QuickChick remove_values_removed.  (* reveals bug related to duplicate keys *)
-QuickChick remove_values_not_removed.
+(*! QuickChick empty_is_empty. *)
+(*! QuickChick get_remove_same. *)
+(*! QuickChick get_remove_diff. *)
+(*! QuickChick get_put_same. *)
+(*! QuickChick get_put_diff. *)
+(*! QuickChick get_restrict_in. *)
+(*! QuickChick get_restrict_notin. *)
+(*! QuickChick in_domain. *)
+(*! QuickChick not_in_domain. *)
+(*! QuickChick in_range. *) (* reveals copy paste bug *)
+(* (*! QuickChick not_in_range. *) TODO *)
+(*! QuickChick reverse_get_Some. *) (* doesn't hold as such *)
+(* (*! QuickChick reverse_get_None. *) TODO *)
+(*! QuickChick intersect_map_spec. *) (* reveals bug related to duplicate keys *)
+(*! QuickChick remove_by_value_same. *) (* reveals bug related to duplicate keys *)
+(*! QuickChick remove_by_value_diff. *)
+(*! QuickChick remove_values_never_there. *)
+(*! QuickChick remove_values_removed. *)  (* reveals bug related to duplicate keys *)
+(*! QuickChick remove_values_not_removed. *)
 (* reveals bug (switched true/false), TODO try with Z instead of nat*)
-QuickChick get_update_map_l.
-QuickChick get_update_map_r.
+(*! QuickChick get_update_map_l. *)
+(*! QuickChick get_update_map_r. *)
