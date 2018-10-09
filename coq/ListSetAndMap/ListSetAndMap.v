@@ -59,7 +59,7 @@ Definition diff(A B: list E): list E :=
 (** Specs of set operations in terms of "contains" *)
 
 Conjecture empty_set_spec: forall (x: E), contains empty_set x <-> False.
-(*! QuickChick empty_set_spec. *)
+(* TC_FAIL QuickChick empty_set_spec. *)
 
 Conjecture singleton_set_spec: forall (x y: E),
     contains (singleton_set y) x <-> x = y.
