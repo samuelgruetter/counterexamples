@@ -146,6 +146,7 @@ Definition reverse_get(M: map K V)(v: V): option K :=
 .
 
 Definition intersect_map(M1 M2: map K V): map K V :=
+  (*! *)
   filter (fun '(k1, v1) => match get M1 k1, get M2 k1 with
                            | Some v1', Some v2 => if veq v1' v1
                                                   then if veq v1 v2 then true else false
@@ -173,6 +174,7 @@ Definition remove_keys(M: map K V)(ks: set K): map K V :=
   filter (fun '(ki, vi) => if in_dec keq ki ks then false else true) M.
 
 Definition remove_by_value(M: map K V)(v: V): map K V :=
+  (*! *)
   remove_keys M (preimage M (singleton_set v))
   (*!! remove_by_value reactivates a shadowed key *)
   (*! filter (fun '(ki, vi) => if veq vi v then false else true) M *)
