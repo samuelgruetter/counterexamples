@@ -242,6 +242,10 @@ Conjecture not_in_range: forall m v,
     (forall k, get m k <> Some v) -> ~ contains (range m) v.
 (* TC_FAIL QuickChick not_in_range. *)
 
+Conjecture range_spec: forall m v,
+    contains (range m) v <-> exists k, get m k = Some v.
+(* TC_FAIL QuickChick range_spec. *)
+
 Conjecture reverse_get_Some: forall m k v,
     reverse_get m v = Some k -> get m k = Some v.
 (*! QuickChick reverse_get_Some. *)
