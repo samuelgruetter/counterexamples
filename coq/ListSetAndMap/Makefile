@@ -1,4 +1,4 @@
-QC=quickChick -color $(QCFLAGS)
+QC=quickChick $(QCFLAGS)
 
 all: Makefile.coq
 	$(MAKE) -f Makefile.coq

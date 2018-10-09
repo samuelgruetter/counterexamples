@@ -3,6 +3,14 @@ Require Import Coq.Arith.PeanoNat.
 
 From QuickChick Require Import QuickChick.
 
+(* should be in QuickChick library: *)
+Global Instance Dec_iff {P Q} {H : Dec P} {I : Dec Q} : Dec (P <-> Q).
+Proof.
+  constructor. unfold ssrbool.decidable.
+  destruct H as [D]; destruct D;
+    destruct I as [D]; destruct D; intuition auto.
+Defined.
+
 
 Notation "'instantiate1' lemma func0" :=
   (ltac:(let r := eval unfold lemma in (lemma func0) in exact r))
@@ -24,72 +32,53 @@ Definition empty_set: set E := nil.
 
 Definition singleton_set(e: E): set E := (cons e nil).
 
-Definition union_c0(A B: list E): list E :=
-  fold_left (fun res a => if in_dec eeq a res then res else a :: res) A B.
+Definition union(A B: list E): list E :=
+  (*! *)
+  fold_left (fun res a => if in_dec eeq a res then res else a :: res) A B
+  (*!! initial accumulator in union nil instead of B *)
+  (*! fold_left (fun res a => if in_dec eeq a res then res else a :: res) A nil *)
+  (*!! then/else branch swapped in union *)
+  (*! fold_left (fun res a => if in_dec eeq a res then a :: res else res) A B *)
+.
 
-Definition union_w0(A B: list E): list E :=
-  fold_left (fun res a => if in_dec eeq a res then res else a :: res) A nil.
+Definition intersect(A B: list E): list E :=
+  (*! *)
+  fold_left (fun res a => if in_dec eeq a B then a :: res else res) A nil
+  (*!! then/else branch swapped in intersect *)
+  (*! fold_left (fun res a => if in_dec eeq a B then res else a :: res) A nil *)
+.
 
-Definition intersect_c0(A B: list E): list E :=
-  fold_left (fun res a => if in_dec eeq a B then a :: res else res) A nil.
-
-Definition intersect_w0(A B: list E): list E :=
-  fold_left (fun res a => if in_dec eeq a B then res else a :: res) A nil.
-
-Definition diff_c0(A B: list E): list E :=
-  fold_left (fun res b => remove eeq b res) B A.
-
-Definition diff_w0(A B: list E): list E :=
-  fold_left (fun res b => remove eeq b res) A B.
+Definition diff(A B: list E): list E :=
+  (*! *)
+  fold_left (fun res b => remove eeq b res) B A
+  (*!! traversee and accumulator swapped in diff *)
+  (*! fold_left (fun res b => remove eeq b res) A B *)
+.
 
 
 (** Specs of set operations in terms of "contains" *)
 
-Conjecture empty_set_spec_c0: forall (x: E), contains empty_set x <-> False.
+Conjecture empty_set_spec: forall (x: E), contains empty_set x <-> False.
+(* TC_FAIL QuickChick empty_set_spec. *)
 
-Conjecture singleton_set_spec_c0: forall (x y: E),
+Conjecture singleton_set_spec: forall (x y: E),
     contains (singleton_set y) x <-> x = y.
+(*! QuickChick singleton_set_spec. *)
 
-Section union_spec.
-  Variable union: set E -> set E -> set E.
-  Definition generic_union_spec := forall (x: E) (A B: set E),
+Conjecture union_spec: forall (x: E) (A B: set E),
     contains (union A B) x <-> contains A x \/ contains B x.
-End union_spec.
-Conjecture union_spec_c0: instantiate1 generic_union_spec union_c0.
-Conjecture union_spec_w0: instantiate1 generic_union_spec union_w0.
+(*! QuickChick union_spec. *)
 
-Section intersect_spec.
-  Variable intersect: set E -> set E -> set E.
-  Definition generic_intersect_spec := forall (x: E) (A B: set E),
+Conjecture intersect_spec: forall (x: E) (A B: set E),
     contains (intersect A B) x <-> contains A x /\ contains B x.
-End intersect_spec.
-Conjecture intersect_spec_c0: instantiate1 generic_intersect_spec intersect_c0.
-Conjecture intersect_spec_w0: instantiate1 generic_intersect_spec intersect_w0.
+(*! QuickChick intersect_spec. *)
 
-Section diff_spec.
-  Variable diff: set E -> set E -> set E.
-  Definition generic_diff_spec := forall (x: E) (A B: set E),
+Conjecture diff_spec: forall (x: E) (A B: set E),
     contains (diff A B) x <-> contains A x /\ ~ contains B x.
-End diff_spec.
-Conjecture diff_spec_c0: instantiate1 generic_diff_spec diff_c0.
-Conjecture diff_spec_w0: instantiate1 generic_diff_spec diff_w0.
+(*! QuickChick diff_spec. *)
 
 
-(* QuickChick setup: *)
-Global Instance Dec_iff {P Q} {H : Dec P} {I : Dec Q} : Dec (P <-> Q).
-Proof.
-  constructor. unfold ssrbool.decidable.
-  destruct H as [D]; destruct D;
-    destruct I as [D]; destruct D; intuition auto.
-Defined.
-
-
-(*! QuickChick union_spec_c0. *)
-(*! QuickChick union_spec_w0. *)
-(*! QuickChick intersect_spec_c0. *)
-(*! QuickChick intersect_spec_w0. *)
-(*! QuickChick diff_spec_c0. *)
-(*! QuickChick diff_spec_w0. *)
+(*
 
 
 (** List Maps *)
@@ -225,3 +214,4 @@ Conjecture get_update_map_r: forall m1 m2 k v,
 (* reveals bug (switched true/false), TODO try with Z instead of nat*)
 (*! QuickChick get_update_map_l. *)
 (*! QuickChick get_update_map_r. *)
+*)
