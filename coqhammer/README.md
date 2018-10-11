@@ -1,5 +1,14 @@
+## Questions
+
+-   https://github.com/lukaszcz/coqhammer/issues/5
+
+
+## Versions
+
 coq 8.8.1
+
 coq-hammer 1.0.9
+
 
 ## Setup:
 

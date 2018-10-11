@@ -1,3 +1,11 @@
+## Questions
+
+-   https://stackoverflow.com/questions/52610402/updating-a-map-with-another-map-in-dafny
+-   https://stackoverflow.com/questions/52618673/how-to-read-dafny-counterexamples
+
+
+## Commands
+
 Running dafny:
 
 ```

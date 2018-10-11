@@ -1,3 +1,7 @@
+## Questions
+
+-    https://github.com/smtcoq/smtcoq/issues/13
+
 ## Used software versions
 
 -    OCaml 4.03.0
