@@ -55,7 +55,7 @@ Goal forall (a b c d: farray Z Z),
     a = d[1 <- b[1]]  ->
     a <> c.
 Proof.
-  cvc4.
+  (* cvc4. *)
 (*
 In nested Ltac calls to "cvc4" and "cvc4_bool", last call failed.
 Error:
@@ -74,9 +74,35 @@ Goal forall (a b c d: farray Z (option Z)),
     a = d[1 <- b[1]]  ->
     a <> c.
 Proof.
-  cvc4.
+  (* cvc4. *)
   (*
 In nested Ltac calls to "cvc4" and "cvc4_bool", last call failed.
 Error: Could not reconstruct model
 *)
+Abort.
+
+Goal forall (a b c d: farray Z (option Z)),
+    b[0 <- (Some 4)] = c  ->
+    d = b[0 <- (Some 4)][1 <- (Some 4)]  ->
+    a = d[1 <- b[1]]  ->
+    a = c.
+Proof.
+  (* cvc4. *)
+(*
+In nested Ltac calls to "cvc4" and "cvc4_bool", last call failed.
+System error: "/home/sam/Documents/git/otherprojects/counterexamples/SMTCoq/sat.plf: No such file or directory"
+*)
+Abort.
+
+Goal forall (a b c d: farray Z Z),
+    b[0 <- (4)] = c  ->
+    d = b[0 <- (4)][1 <- (4)]  ->
+    a = d[1 <- b[1]]  ->
+    a = c.
+Proof.
+  (* cvc4. *)
+(*
+In nested Ltac calls to "cvc4" and "cvc4_bool", last call failed.
+System error: "/home/sam/Documents/git/otherprojects/counterexamples/SMTCoq/sat.plf: No such file or directory"
+ *)
 Abort.
