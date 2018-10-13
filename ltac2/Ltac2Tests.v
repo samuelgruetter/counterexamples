@@ -1,6 +1,15 @@
 Require Import Coq.ZArith.ZArith.
 Require Import Ltac2.Ltac2.
 
+Ltac2 constructors_of_type t :=
+  match! t with
+  | prod _ _ => [ constr:(@pair) ]
+  | Z => [ constr:(Z0); constr:(Zpos); constr:(Zneg) ]
+  | nat => [ constr:(O); constr:(S) ]
+  | _ => Control.throw (Tactic_failure None)
+  end.
+
+Ltac2 Eval constructors_of_type constr:((nat * nat)%type).
 
 Ltac2 foo () := Message.print (Message.of_string "Hello world!").
 
