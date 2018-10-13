@@ -16,10 +16,6 @@ rec get : list -> K -> option :=
   forall ki vi k rest. get (cons (pair ki vi) rest) k =
     (if (ki = k) then Some vi else get rest k).
 
-rec append : list -> list -> list :=
-  forall ys. append nil ys = ys;
-  forall x xs ys. append (cons x xs) ys = cons x (append xs ys).
-
 rec filter : (tuple -> prop) -> list -> list :=
   forall f. filter f nil = nil;
   forall f h t. filter f (cons h t) =
@@ -39,7 +35,9 @@ val l: list.
 val k1: K.
 val k2: K.
 val v: V.
-axiom k1 != k2.
+
+# Missing hypothesis:
+# axiom k1 != k2.
 
 goal ~ (get (put l k1 v) k2 = get l k2).
 

@@ -4,6 +4,10 @@ Using my opam switch `smtcoq_cvc4` with
 
 -    OCaml 4.03.0
 -    coq 8.6.1
+-    smbc 0.4.2
+-    cvc4 1.5 (shipped with Isabelle 2017)
+-    nunchaku 0.5.1 70e5101
+-    nunchaku-coq master (cb96ecad3b4ddf8ae0cbc486e7e38a230ee77e14, Jun 26 2017)
 
 
 ## Setup

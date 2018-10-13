@@ -1,0 +1,5 @@
+val V: type.
+
+val v: V.
+
+#axiom forall (v: V). false.
