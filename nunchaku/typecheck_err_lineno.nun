@@ -1,0 +1,19 @@
+val K : type.
+val V : type.
+
+data tuple := pair K V.
+
+data list :=
+  nil
+| cons tuple list.
+
+data option :=
+  None
+| Some V.
+
+rec put : list -> K -> V -> list :=
+  fun l k v. cons (pair k v) l.
+
+# correct version:
+# rec put : list -> K -> V -> list :=
+#   put = (fun l k v. cons (pair k v) l).
