@@ -75,9 +75,17 @@ Goal forall (a b c d: farray Z (option Z)),
     a <> c.
 Proof.
   (* cvc4. *)
-  (*
+(*
 In nested Ltac calls to "cvc4" and "cvc4_bool", last call failed.
-Error: Could not reconstruct model
+Error:
+CVC4 returned sat. Here is the model:
+
+a := (const_farray (option Z)#0)[0 <- (option Z)#1]
+b := (const_farray (option Z)#0)
+c := (const_farray (option Z)#0)[0 <- (option Z)#1]
+d := (const_farray (option Z)#0)[0 <- (option Z)#1][1 <- (option Z)#1]
+Z := Set#0
+(@Some) := fun _ _ => (option Z)#1
 *)
 Abort.
 
