@@ -17,6 +17,9 @@ definition diff :: "'a set \<Rightarrow> 'a set \<Rightarrow> 'a set" where
 definition get :: "('k \<rightharpoonup> 'v) \<Rightarrow> 'k \<Rightarrow> 'v option" where
   "get m ki \<equiv> m ki"
 
+definition put :: "('k \<rightharpoonup> 'v) \<Rightarrow> 'k \<Rightarrow> 'v \<Rightarrow> ('k \<rightharpoonup> 'v)" where
+  "put m ki vi k0 \<equiv> if k0 = ki then Some vi else m k0"
+
 definition domain :: "('k \<rightharpoonup> 'v) \<Rightarrow> 'k set" where
   "domain M \<equiv> dom M"
 
@@ -35,6 +38,9 @@ definition remove_values :: "('k \<rightharpoonup> 'v) \<Rightarrow> 'v set \<Ri
   "remove_values M A \<equiv> (\<lambda>k. case M k of
                                None \<Rightarrow> None
                              | Some a \<Rightarrow> if a \<in> A then None else Some a)"
+
+definition remove_by_value :: "('k \<rightharpoonup> 'v) \<Rightarrow> 'v \<Rightarrow> ('k \<rightharpoonup> 'v)" where
+  "remove_by_value M v0 \<equiv> remove_values M (singleton_set v0)"
 
 definition extends :: "('k \<rightharpoonup> 'v) \<Rightarrow> ('k \<rightharpoonup> 'v) \<Rightarrow> bool" where
   "extends M1 M2 \<equiv> M2 \<subseteq>\<^sub>m M1"
@@ -235,4 +241,29 @@ lemma test: "
 "
   nitpick
   (* Nitpick found no counterexample *)
+  oops
+
+lemma test: "
+  (\<forall> k. get m k \<noteq> Some a) \<Longrightarrow>
+  (\<forall> k.
+   get (remove_values m (diff (range m) (union (singleton_set a) (diff l (singleton_set x)))))
+     k \<noteq> Some x) \<Longrightarrow> False
+"
+(*
+Auto Quickcheck found a counterexample:
+  m = Map.empty
+  a = a\<^sub>1
+  l = {}
+  x = a\<^sub>1
+*)
+  oops
+
+lemma test: "
+  subset l (union (range m) (singleton_set x)) \<Longrightarrow>
+  get (remove_values m (diff (range m) (union (singleton_set a) (diff l (singleton_set x))))) i =
+  Some x \<Longrightarrow>
+  subset l (range (put (remove_by_value m x) i x))
+"
+  (* Auto Quickcheck doesn't say anything *)
+  (* nitpick [timeout = 500] *) (* Nitpick found no counterexample *)
   oops
