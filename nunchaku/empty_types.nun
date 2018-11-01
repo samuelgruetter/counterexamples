@@ -1,5 +1,9 @@
-val V: type.
+# data empty_funcname := . # parse error
 
-val v: V.
+# val empty_funcname: type [max_card 0]. # max_card 0 is not taken into account
 
-#axiom forall (v: V). false.
+val empty: type.
+
+goal ~ (forall (e: empty). ((true = false) asserting false)).
+
+# axiom forall (fn: empty_funcname). false.

@@ -1,0 +1,14 @@
+# adapted from https://nunchaku-inria.github.io/nunchaku/input_lang.html
+
+# polymorphic list
+data list a :=
+  | nil
+  | cons a (list a).
+
+# rose tree (with a list of children)
+data tree :=
+  | node (list tree).
+
+val t1: tree.
+
+goal t1 != node nil.

@@ -1,0 +1,3 @@
+val monoid: type -> type.
+# Error: ill-formed term: no quantifiers in types
+val inst_monoid: forall a. a -> (a -> a -> a) -> monoid a.
