@@ -1,0 +1,8 @@
+# goal ~ (forall (t: type). exists (a: t). a = a).
+# UNSAT
+# {backend:smbc, time:0.0s}
+# which is wrong for Coq: Coq has a counterexample with t = Empty_set
+
+goal (forall (t: type). exists (a: t). a = a).
+# Error: monomorphization: invalid problem:
+# goal `forall (t/33:type). exists (a/35:t/33). a/35 = a/35` contains type variables
