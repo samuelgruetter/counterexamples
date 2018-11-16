@@ -61,7 +61,7 @@ definition intersect_map :: "('k \<rightharpoonup> 'v) \<Rightarrow> ('k \<right
                                   None \<Rightarrow> None
                                 | Some v2 \<Rightarrow> if v1 = v2 then Some v1 else None)"
 
-lemma test : "disjoint (dom (remove_values m1 (ran m2))) (dom m2)"
+lemma test : "disjoint (domain (remove_values m1 (range m2))) (domain m2)"
 (*
 Auto Quickcheck found a counterexample:
   m1 = [a\<^sub>2 \<mapsto> a\<^sub>2]
@@ -70,8 +70,8 @@ Auto Quickcheck found a counterexample:
   oops
 
 lemma test: "
-  subset (ran g1) p1 \<Longrightarrow>
-  subset (ran g2) p2 \<Longrightarrow>
+  subset (range g1) p1 \<Longrightarrow>
+  subset (range g2) p2 \<Longrightarrow>
   extends (update_map (remove_values r p1) g1)
     (update_map (remove_values r (union p1 p2)) (intersect_map g1 g2))
 "
@@ -99,9 +99,9 @@ Auto Quickcheck found a counterexample:
   oops
 
 lemma test: "
-  subset (ran g1) p1 \<Longrightarrow>
-  subset (ran g2) p2 \<Longrightarrow>
-  subset (ran (intersect_map g1 g2)) (union p1 p2) \<Longrightarrow>
+  subset (range g1) p1 \<Longrightarrow>
+  subset (range g2) p2 \<Longrightarrow>
+  subset (range (intersect_map g1 g2)) (union p1 p2) \<Longrightarrow>
   extends (update_map (remove_values r p1) g1)
     (update_map (remove_values r (union p1 p2)) (intersect_map g1 g2))
 "
@@ -136,8 +136,8 @@ Auto Quickcheck found a counterexample:
 lemma test: "
   extends u1 (update_map (remove_values m p1) g1) \<Longrightarrow>
   extends u2 (update_map (remove_values m p2) g2) \<Longrightarrow>
-  subset (ran g1) p1 \<Longrightarrow>
-  subset (ran g2) p2 \<Longrightarrow>
+  subset (range g1) p1 \<Longrightarrow>
+  subset (range g2) p2 \<Longrightarrow>
   extends (intersect_map u1 u2)
     (update_map (remove_values m (union p1 p2)) (intersect_map g1 g2))
 "
@@ -156,10 +156,10 @@ Auto Quickcheck found a counterexample:
 lemma test: "
   extends u1 (update_map (remove_keys (remove_values m ps1) pi1) g1) \<Longrightarrow>
   extends u2 (update_map (remove_keys (remove_values m ps2) pi2) g2) \<Longrightarrow>
-  subset (ran g1) ps1 \<Longrightarrow>
-  subset (ran g2) ps2 \<Longrightarrow>
-  subset (dom g1) pi1 \<Longrightarrow>
-  subset (dom g2) pi2 \<Longrightarrow>
+  subset (range g1) ps1 \<Longrightarrow>
+  subset (range g2) ps2 \<Longrightarrow>
+  subset (domain g1) pi1 \<Longrightarrow>
+  subset (domain g2) pi2 \<Longrightarrow>
   extends (intersect_map u1 u2)
     (update_map (remove_keys (remove_values m (union ps1 ps2)) (union pi1 pi2))
        (intersect_map g1 g2))
@@ -171,10 +171,10 @@ lemma test: "
 lemma test: "
   extends (f2 (f1 m)) (update_map (remove_keys (remove_values (f1 m) ps2) pi2) g2) \<Longrightarrow>
   extends (f1 m) (update_map (remove_keys (remove_values m ps1) pi1) g1) \<Longrightarrow>
-  subset (ran g1) ps1 \<Longrightarrow>
-  subset (ran g2) ps2 \<Longrightarrow>
-  subset (dom g1) pi1 \<Longrightarrow>
-  subset (dom g2) pi2 \<Longrightarrow>
+  subset (range g1) ps1 \<Longrightarrow>
+  subset (range g2) ps2 \<Longrightarrow>
+  subset (domain g1) pi1 \<Longrightarrow>
+  subset (domain g2) pi2 \<Longrightarrow>
   extends (f2 (f1 m))
     (update_map (remove_keys (remove_values m (union ps1 ps2)) (union pi1 pi2))
        (update_map g1 g2))
@@ -204,10 +204,10 @@ lemma test: "
   (subset ps2 empty_set \<Longrightarrow> subset pi2 empty_set) \<Longrightarrow>
   extends (f2 (f1 m)) (update_map (remove_keys (remove_values (f1 m) ps2) pi2) g2) \<Longrightarrow>
   extends (f1 m) (update_map (remove_keys (remove_values m ps1) pi1) g1) \<Longrightarrow>
-  subset (ran g1) ps1 \<Longrightarrow>
-  subset (ran g2) ps2 \<Longrightarrow>
-  subset (dom g1) pi1 \<Longrightarrow>
-  subset (dom g2) pi2 \<Longrightarrow>
+  subset (range g1) ps1 \<Longrightarrow>
+  subset (range g2) ps2 \<Longrightarrow>
+  subset (domain g1) pi1 \<Longrightarrow>
+  subset (domain g2) pi2 \<Longrightarrow>
   extends (f2 (f1 m))
     (update_map (remove_keys (remove_values m (union ps1 ps2)) (union pi1 pi2))
        (update_map g1 g2))
