@@ -1,0 +1,7 @@
+Definition intersect_map(M1 M2: map K V): map K V :=
+  filter (fun '(k1, v1) => match get M1 k1, get M2 k1 with
+                           | Some v1', Some v2 => if veq v1' v1
+                                                  then if veq v1 v2 then true else false
+                                                  else false
+                           | _, _ => false
+                           end) M1.

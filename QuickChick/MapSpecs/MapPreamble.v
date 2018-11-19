@@ -45,3 +45,13 @@ Definition domain_and_range(M: map K V): set K * set V :=
   fold_left (fun '(d, r) '(ki, vi) =>
                if in_dec keq ki d then (d, r) else (ki :: d, vi :: r)
             ) M (empty_set, empty_set).
+
+Definition preimage(M: map K V)(vs: set V): set K :=
+  filter (fun ki => match get M ki with
+                    | Some vi => if in_dec veq vi vs then true else false
+                    | None => false
+                    end)
+         (domain M).
+
+Definition remove_keys(M: map K V)(ks: set K): map K V :=
+  filter (fun '(ki, vi) => if in_dec keq ki ks then false else true) M.
