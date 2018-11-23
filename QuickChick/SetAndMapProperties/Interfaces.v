@@ -64,3 +64,30 @@ Section MapDefinitionsAll.
 End MapDefinitionsAll.
 
 End MoreReal.
+
+
+Section SampleQueries.
+Context {K V: Type}.
+Context {KVmap: MapFunctions K V}.
+
+(* query3 *)
+Goal
+forall (g1 g2 r : map K V) (p1 p2 : set V),
+subset (range g1) p1 ->
+subset (range g2) p2 ->
+subset (range (intersect_map g1 g2))
+       (union p1 p2) ->
+extends (update_map (remove_values r p1) g1)
+        (update_map (remove_values r (union p1 p2))
+                    (intersect_map g1 g2)).
+Abort.
+
+(* remove_values_not_removed *)
+Goal
+forall (m : map K V) (k : K) (v : V) (vs : set V),
+get m k = Some v ->
+~ v \in vs ->
+get (remove_values m vs) k = Some v.
+Abort.
+
+End SampleQueries.

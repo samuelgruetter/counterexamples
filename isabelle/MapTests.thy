@@ -98,6 +98,23 @@ Auto Quickcheck found a counterexample:
 *)
   oops
 
+lemma foo: "\<not> (\<forall> m. \<forall> n. subset m n)"
+(* sledgehammer:
+Proof found... 
+"e": Try this: by (meson empty_iff insert_subset subset_def) (5 ms) 
+"spass": Try this: by (meson empty_iff insert_subset subset_def) (4 ms) 
+"z3": Try this: by (metis Un_absorb2 Un_insert_right empty_iff singletonI subset_Un_eq subset_def) (12 ms) 
+"cvc4": Try this: by (meson empty_iff insert_subset subset_def) (12 ms)
+*)
+  by (meson empty_iff insert_subset subset_def)
+
+lemma foo2: "\<not> (\<forall> m. \<forall> n. (subset m n \<longrightarrow> subset n m))"
+  by (meson empty_iff empty_subsetI insert_subset subset_def)
+
+lemma foo2a: "(\<forall> m. \<forall> n. (subset m n \<longrightarrow> subset n m))"
+(* Auto Quickcheck finds a counterexample, and sledgehammer times out *)
+  oops
+
 lemma test: "
   subset (range g1) p1 \<Longrightarrow>
   subset (range g2) p2 \<Longrightarrow>
