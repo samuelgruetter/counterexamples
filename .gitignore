@@ -3,3 +3,5 @@
 *.glob
 *.aux
 *.tmp
+.nia.cache
+.lia.cache
