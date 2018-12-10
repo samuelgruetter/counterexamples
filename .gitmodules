@@ -1,0 +1,6 @@
+[submodule "coq-smt-notations/bedrock2cex/bedrock2"]
+	path = coq-smt-notations/bedrock2cex/bedrock2
+	url = ../../mit-plv/bedrock2.git
+[submodule "isabelle/bedrock2cex/bedrock2"]
+	path = isabelle/bedrock2cex/bedrock2
+	url = ../../mit-plv/bedrock2.git

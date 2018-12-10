@@ -61,6 +61,30 @@ definition intersect_map :: "('k \<rightharpoonup> 'v) \<Rightarrow> ('k \<right
                                   None \<Rightarrow> None
                                 | Some v2 \<Rightarrow> if v1 = v2 then Some v1 else None)"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 lemma test : "disjoint (domain (remove_values m1 (range m2))) (domain m2)"
 (*
 Auto Quickcheck found a counterexample:
