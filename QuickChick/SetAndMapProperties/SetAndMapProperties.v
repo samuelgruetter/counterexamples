@@ -4,7 +4,7 @@ Require Import SetAndMapLib.
 Conjecture query1: forall m1 m2,
     disjoint (domain (remove_values m1 (range m2))) (domain m2).
 
-(*! QuickChick query1. *)
+QuickChick query1.
 
 (*
 QuickChecking query1
@@ -27,7 +27,7 @@ Conjecture query2: forall g1 g2 p1 p2 r,
   extends (update_map (remove_values r p1) g1)
     (update_map (remove_values r (union p1 p2)) (intersect_map g1 g2)).
 
-(* TC_FAIL QuickChick query2. *)
+QuickChick query2.
 
 (* Isabelle:
 Auto Quickcheck found a counterexample:

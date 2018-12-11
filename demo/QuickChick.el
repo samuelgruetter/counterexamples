@@ -1,0 +1,5 @@
+(setq frame-title-format "QuickChick")
+(find-file "../QuickChick/SetAndMapProperties/SetAndMapProperties.v")
+(end-of-buffer)
+(ignore-errors (company-coq-proof-goto-point))
+(ignore-errors (company-coq-proof-goto-point))
