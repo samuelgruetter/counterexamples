@@ -74,7 +74,51 @@ Goal forall (a b c d: farray Z (option Z)),
     a = d[1 <- b[1]]  ->
     a <> c.
 Proof.
-  (* cvc4. *)
+  cvc4.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 (*
 In nested Ltac calls to "cvc4" and "cvc4_bool", last call failed.
 Error:
