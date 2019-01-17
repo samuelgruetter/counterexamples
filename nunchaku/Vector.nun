@@ -1,0 +1,38 @@
+data nat := O | S nat.
+
+rec plus : nat -> nat -> nat :=
+  forall x. plus O x = x;
+  forall x y. plus (S x) y = S (plus x y).
+
+data vector0 t :=
+  | nil
+  | cons t (vector0 t).
+
+pred IsVector : pi t. vector0 t -> nat -> prop :=
+  IsVector nil O;
+  forall v n x. IsVector v n => IsVector (cons x v) (S n).
+
+rec append : pi t. vector0 t -> vector0 t -> vector0 t :=
+  forall xs ys. append xs ys =
+    match xs with
+    | cons x xs0 -> cons x (append xs0 ys)
+    | nil -> ys
+    end.
+
+val T: type.
+val v1: vector0 T.
+val v2: vector0 T.
+val n1: nat.
+val n2: nat.
+axiom IsVector v1 n1.
+axiom IsVector v2 n2.
+axiom plus n1 n2 != O.
+goal ~ (append v1 v2 != nil).
+
+
+
+
+
+
+# incomplete/timeout
+# goal ~ (IsVector (append v1 v2) (plus n1 n2)).

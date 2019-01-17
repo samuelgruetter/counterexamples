@@ -42,3 +42,9 @@ Then, in any terminal, if you want to use this Coq version with Ltac2, do
 ```
 export PATH=PATH_TO_THE_COQ_CLONE/bin/:$PATH
 ```
+
+which is, on my machine:
+
+```
+export PATH=/home/sam/Documents/git/ltac2/coq/bin/:$PATH
+```

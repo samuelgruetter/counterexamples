@@ -84,21 +84,36 @@ definition intersect_map :: "('k \<rightharpoonup> 'v) \<Rightarrow> ('k \<right
 
 
 
-
-lemma test : "disjoint (domain (remove_values m1 (range m2))) (domain m2)"
-(*
-Auto Quickcheck found a counterexample:
-  m1 = [a\<^sub>2 \<mapsto> a\<^sub>2]
-  m2 = [a\<^sub>2 \<mapsto> a\<^sub>1]
-*)
-  oops
-
 lemma test: "
   subset (range g1) p1 \<Longrightarrow>
   subset (range g2) p2 \<Longrightarrow>
   extends (update_map (remove_values r p1) g1)
     (update_map (remove_values r (union p1 p2)) (intersect_map g1 g2))
 "
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   nitpick
 (*
 Nitpick found a counterexample for card 'a = 3 and card 'b = 3:
@@ -121,6 +136,16 @@ Auto Quickcheck found a counterexample:
   r = [a\<^sub>2 \<mapsto> a\<^sub>2]
 *)
   oops
+
+
+lemma test : "disjoint (domain (remove_values m1 (range m2))) (domain m2)"
+(*
+Auto Quickcheck found a counterexample:
+  m1 = [a\<^sub>2 \<mapsto> a\<^sub>2]
+  m2 = [a\<^sub>2 \<mapsto> a\<^sub>1]
+*)
+  oops
+
 
 lemma foo: "\<not> (\<forall> m. \<forall> n. subset m n)"
 (* sledgehammer:
