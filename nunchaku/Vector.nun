@@ -20,19 +20,13 @@ rec append : pi t. vector0 t -> vector0 t -> vector0 t :=
     end.
 
 val T: type.
+
 val v1: vector0 T.
-val v2: vector0 T.
 val n1: nat.
-val n2: nat.
 axiom IsVector v1 n1.
+
+val v2: vector0 T.
+val n2: nat.
 axiom IsVector v2 n2.
-axiom plus n1 n2 != O.
-goal ~ (append v1 v2 != nil).
 
-
-
-
-
-
-# incomplete/timeout
-# goal ~ (IsVector (append v1 v2) (plus n1 n2)).
+goal ~ (append v1 v2 = append v2 v1).

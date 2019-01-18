@@ -3,7 +3,7 @@
 # launches next only once previous is closed
 # except
 
-~/installs/Isabelle2017/Isabelle2017 &
+~/installs/Isabelle2017/Isabelle2017 ../isabelle/MapTests.thy +line:86 &
 
 ./isabelle.sh
 

@@ -1,3 +1,3 @@
 (setq frame-title-format "Nunchaku")
-(find-file "../nunchaku/InductiveUsesItselfThroughOtherInductive.nun")
+(find-file "../nunchaku/Vector.nun")
 (shell)
