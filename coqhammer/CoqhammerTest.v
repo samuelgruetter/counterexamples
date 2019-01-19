@@ -30,6 +30,23 @@ Qed.
 Lemma bad1: forall n, n + n + n = 2 * n.
 Proof.
   hammer.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 (*
 Error: Hammer failed: ATPs failed to find a proof
  *)
